@@ -21,10 +21,7 @@ angular.module("todoListModule", ["LocalStorageModule", "ngRoute", "getTimeModul
 
 	.component("todoView", {
 		templateUrl: "./js/modules/todoList/todoView.html",
-		controller: "todoViewController",
-		bindings: {
-			colorClass: "@"
-		}
+		controller: "todoViewController"
 	})
 
 	.component("addTodo", {
