@@ -1,0 +1,56 @@
+<div ng-controller="todoListController" class="clearfix">
+	<div id="options" class="item clearfix">
+		<div class="filterItem no-select">
+			<img class="imgBtn" ng-click="sortBy(defaultPropertyName)" ng-show="propertyName != defaultPropertyName" draggable="false" src="./img/Delete.png" alt="Remove filters" title="Remove filters">
+			<span ng-click="sortBy(defaultPropertyName)" ng-class="{sortorder: propertyName == defaultPropertyName, reverse: reverse}"></span>
+		</div>
+		<div class="filterItem no-select">
+			<span ng-click="sortBy('title')" ng-class="{sortorder: propertyName === 'title', reverse: reverse}">Title</span>
+		</div>
+		<div class="filterItem no-select">
+			<span ng-click="sortBy('importance.value')" ng-class="{sortorder: propertyName === 'importance.value', reverse: reverse}">Importance</span>
+			<select name="importance" ng-model="selectedImportance" ng-options="imp.value as imp.name for imp in Importance"></select>
+		</div>
+		<div class="filterItem no-select">
+			<span ng-click="sortBy('due_date')" ng-class="{sortorder: propertyName === 'due_date', reverse: reverse}">Due date</span>
+		</div>
+		<div class="filterItem no-select">
+			<span ng-click="sortBy('status.value')" ng-class="{sortorder: propertyName === 'status.value', reverse: reverse}">Status</span>
+			<select name="status" ng-model="selectedStatus" ng-options="stat.value as stat.name for stat in Status"></select>
+		</div>
+		<div class="filterItem no-select">
+			<button ng-click="clearTodoList('done')">Clear completed</button>
+			<button ng-click="clearTodoList('all')">Clear all</button>
+		</div>
+	</div>
+	<!-- | orderBy:propertyName:reverse  /// | orderBy:['-importance.value', '+due_date', '-status.value'] -->
+	<div ng-repeat="todo in filteredTodoList = (todoList | filter: $ctrl.search | filter: { importance: { value: selectedImportance }, status: { value: selectedStatus } }) | orderBy:propertyName:reverse" class="item todoItem clearfix" ng-class="getColorClass(todo)">
+		<div class="todoSettings">
+			<div class="todoOption">
+				<img class="imgBtn" ng-click="deleteTodo(todo)" draggable="false" src="./img/Delete.png" alt="Delete" title="Delete">
+			</div>
+			<div class="todoOption">
+				<a href="#/editTodo/{{todo.title}}">
+					<img class="imgBtn" draggable="false" src="./img/Edit.png" alt="Edit" title="Edit">
+				</a>
+			</div>
+		</div>
+		<div class="todoTitle">
+			<a href="#/details/{{todo.title}}" ng-class="getTitleClass(todo)">{{todo.title}}</a>
+			<div class="importance">{{todo.importance.name}}</div>
+		</div>
+		<div class="todoInfo">
+			<div class="due_date">
+				{{todo.due_date | date: 'dd/MM/yyyy'}}
+				<contextual-layer date="{{todo.due_date}}"></contextual-layer>
+			</div>
+			<div>{{todo.status.name}}</div>
+		</div>
+	</div>
+	<div id="no-results" ng-hide="filteredTodoList.length">No results <i class="em em-cry"></i></div>
+	<div id="addTodo" class="item">
+		<a href="#/addTodo" style="display: inherit;">
+			<img class="imgBtn" draggable="false" src="./img/Add.png" alt="Add" title="Add">
+		</a>
+	</div>
+</div>

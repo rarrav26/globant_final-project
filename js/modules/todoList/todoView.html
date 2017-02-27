@@ -1,0 +1,19 @@
+<div id="todoView" ng-controller="todoViewController" class="clearfix" ng-class="getColorClass(todo)">
+	<div id="title" class="clearfix">
+		<h1 class="title" ng-class="getTitleClass(todo)">{{todo.title}}</h1>
+		<div class="importance">{{todo.importance.name}}</div>
+	</div>
+	<div id="info" class="clearfix">
+		<span>Status: {{todo.status.name}}</span>
+		<span class="ghost">|</span>
+		<span class="due_date">
+			Due date: {{todo.due_date | date: 'dd/MM/yyyy HH:mm' }}
+			<contextual-layer date="{{todo.due_date}}"></contextual-layer>
+		</span>
+	</div>
+	<hr>
+	<div id="description" class="clearfix">
+		{{todo.description}}
+		<span ng-hide="todo.description.length">No description</span>
+	</div>
+</div>

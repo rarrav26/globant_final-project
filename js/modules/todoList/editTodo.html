@@ -1,0 +1,17 @@
+<div ng-controller="editTodoController" class="clearfix">
+	<div id="editTodo" class="item">
+		<form name="editForm" ng-submit="editTodo()" autocomplete="off">
+			<p>Title</p>
+			<input name="title" type="text" ng-model="todo.title" placeholder="Title (e.g. Go to the gym)" required="required">
+			<p>Description</p>
+			<textarea name="description" type="textarea" ng-model="todo.description" placeholder="Description (e.g. Name of the gym)" maxlength="350"></textarea>
+			<p>Importance</p>
+			<select name="importance" ng-model="todo.importance" ng-options="imp.name disable when imp.disabled for imp in Importance track by imp.value" required="required"></select>
+			<p>Due date</p>
+			<input name="due_date" type="datetime-local" ng-model="todo.due_date" placeholder="2017-03-26T13:45:00.000" required="required">
+			<p>Status</p>
+			<select name="status" ng-model="todo.status" ng-options="stat.name disable when stat.disabled for stat in Status track by stat.value" required="required"></select>
+			<button type="submit" class="btn-edit" ng-disabled="editForm.$pristine">Edit</button>
+		</form>
+	</div>
+</div>

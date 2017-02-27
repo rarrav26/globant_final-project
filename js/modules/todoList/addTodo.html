@@ -1,0 +1,21 @@
+<div ng-controller="addTodoController" class="clearfix">
+	<div id="newTodo" class="item">
+		<form ng-submit="addTodo()" autocomplete="off">
+			<p>Title</p>
+			<input name="title" type="text" ng-model="newTodo.title" placeholder="Title (e.g. Go to the gym)" required="required">
+			<p>Description</p>
+			<textarea name="description" type="textarea" ng-model="newTodo.description" placeholder="Description (e.g. Name of the gym)" maxlength="350"></textarea>
+			<p>Importance</p>
+			<select name="importance" ng-model="newTodo.importance" ng-options="imp.name disable when imp.disabled for imp in Importance track by imp.value" required="required">
+				<option value="" selected="selected" disabled="disabled">Select</option>
+			</select>
+			<p>Due date</p>
+			<input name="due_date" type="datetime-local" ng-model="newTodo.due_date" placeholder="2017-03-26T13:45:00.000" required="required">
+			<p>Status</p>
+			<select name="status" ng-model="newTodo.status" ng-options="stat.name disable when stat.disabled for stat in Status track by stat.value" required="required">
+				<option value="" selected="selected" disabled="disabled">Select</option>
+			</select>
+			<button type="submit" class="btn-add">Add</button>
+		</form>
+	</div>
+</div>
