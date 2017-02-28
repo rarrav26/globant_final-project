@@ -10,7 +10,7 @@
 				<option value="" selected="selected" disabled="disabled">Select</option>
 			</select>
 			<p>Due date</p>
-			<input name="due_date" type="datetime-local" data-date='{"startView": 1, "openOnMouseFocus": true}' ng-model="newTodo.due_date" required="required">
+			<input name="due_date" type="datetime-local" ng-model="newTodo.due_date" required="required">
 			<p>Status</p>
 			<select name="status" ng-model="newTodo.status" ng-options="stat.name disable when stat.disabled for stat in Status track by stat.value" required="required">
 				<option value="" selected="selected" disabled="disabled">Select</option>
