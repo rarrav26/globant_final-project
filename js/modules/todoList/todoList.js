@@ -65,7 +65,7 @@ function todoListService(localStorageService, getTimeService){
 			{
 				value: 3,
 				name: "Done"
-		}
+			}
 		];
 	};
 
@@ -160,7 +160,7 @@ function todoListService(localStorageService, getTimeService){
 	this.getColorClass = function(obj){
 		var imp = obj.importance.name.toLowerCase();
 		var due_priority = getDueDaysPriority(obj.due_date);
-		
+
 		if (due_priority === -1 || obj.status.value === 3) return 'grey';
 
 		return imp + '-' + due_priority;

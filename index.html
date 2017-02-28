@@ -5,6 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>TodoMVC Reloaded</title>
 	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="js/lib/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/lib/polyfiller.js"></script>
+	<script>
+		//configure before calling webshims.polyfill
+		webshim.setOptions('forms-ext', {
+		    replaceUI: 'auto'
+		});
+
+		webshim.setOptions("forms-ext", {
+			"widgets": {
+				"startView": 1
+			}
+		});
+
+		//set language/UI dateformat || or use lang attribute on html element
+		webshims.activeLang('es');
+
+		webshim.polyfill('forms forms-ext');
+	</script>
 </head>
 <body>
 	<header class="clearfix">

@@ -1,5 +1,19 @@
 var main = angular.module("main", ["todoListModule", "contextualLayerModule", "LocalStorageModule", "ngRoute", "ngAnimate"])
-	.config(["$routeProvider", "$locationProvider", routeProviderConfig]);
+	.config(["$routeProvider", "$locationProvider", routeProviderConfig])
+
+	//datetime-local for all browsers
+	.directive('input', function(){
+		return {
+			restrict: 'E',
+			priority: -1,
+			link: function(scope, element, attrs) {
+				if (attrs.type == 'datetime-local') {
+					// Doesn't appear to need a setTimeout when used like this
+					$(element).updatePolyfill();
+				}
+			}
+		};
+	});
 
 function routeProviderConfig($routeProvider, $locationProvider){
 	$routeProvider
